@@ -1,0 +1,29 @@
+[package]
+name = "monad-monitor"
+description = "Monad ledger-tail: live consensus/ledger observability sidecar"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "monad-monitor"
+path = "src/main.rs"
+bench = false
+
+[dependencies]
+monad-block-persist = { workspace = true }
+monad-consensus-types = { workspace = true }
+monad-crypto = { workspace = true }
+monad-node-config = { workspace = true, features = ["crypto"] }
+monad-types = { workspace = true }
+monad-validator = { workspace = true }
+
+alloy-primitives = { workspace = true }
+clap = { workspace = true, features = ["derive"] }
+futures-util = { workspace = true }
+hex = { workspace = true }
+inotify = { workspace = true }
+lru = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "time"] }
+toml = { workspace = true }
+tracing = { workspace = true, features = ["log"] }
+tracing-subscriber = { workspace = true, features = ["env-filter", "json"] }

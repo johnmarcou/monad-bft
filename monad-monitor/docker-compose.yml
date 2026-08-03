@@ -1,0 +1,17 @@
+services:
+  monad-monitor:
+    build:
+      context: ..
+      dockerfile: monad-monitor/Dockerfile
+    image: monad-monitor:latest
+    volumes:
+      - /monad/ledger:/monad/ledger
+      - /monad/config:/monad/config
+
+  # Dumps the built binary onto the Docker daemon's own /tmp (not the local
+  # client's) by bind-mounting it in — safe to use against a remote context.
+  extract:
+    image: monad-monitor:latest
+    entrypoint: ["cp", "/usr/local/bin/monad-monitor", "/out/monad-monitor"]
+    volumes:
+      - /tmp:/out
